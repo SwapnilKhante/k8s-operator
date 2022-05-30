@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: url-shortener-operator
+  labels:
+    app: url-shortener-operator
+spec:
+  replicas: 1 # make sure to not have more than one replicas
+  strategy:
+    type: Recreate # make sure the old pod is being killed before the new pod is being created
+  selector:
+    matchLabels:
+      app: url-shortener-operator
+  template:
+    metadata:
+      labels:
+        app: url-shortener-operator
+    spec:
+      serviceAccountName:  operator-service-account
+      containers:
+      - name: url-shortener-operator
+        image: swapnilkhante/url-shortener-operator:v1
+        imagePullPolicy: IfNotPresent

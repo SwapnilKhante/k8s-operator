@@ -1,0 +1,7 @@
+apiVersion: operators.sk.com/v1
+kind: UrlShortener
+metadata:
+  name: google-url-shortener
+  namespace: test
+spec:
+  url: www.google.com
